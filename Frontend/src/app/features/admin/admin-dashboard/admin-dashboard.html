@@ -1,0 +1,75 @@
+<div class="admin-dashboard d-flex">
+  <!-- ===== Sidebar ===== -->
+  <div class="sidebar">
+    <h4 class="brand">⚡ DoConnect</h4>
+    <ul>
+      <li><a routerLink="/admin" class="active">📊 Dashboard</a></li>
+      <li><a routerLink="/questions">❓ Questions</a></li>
+      <li><a routerLink="/questions">💬 Answers</a></li>
+    </ul>
+  </div>
+
+  <!-- ===== Main Content ===== -->
+  <div class="content flex-grow-1 p-4">
+    <h2 class="fw-bold mb-4">📊 Admin Dashboard</h2>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="stat-card bg-primary text-white shadow-sm">
+          <h5>Pending Questions</h5>
+          <h2>{{ pendingQ.length }}</h2>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="stat-card bg-warning text-dark shadow-sm">
+          <h5>Pending Answers</h5>
+          <h2>{{ pendingA.length }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Pending Questions ===== -->
+    <h3 class="section-title">📝 Pending Questions</h3>
+    <div *ngIf="pendingQ.length === 0" class="alert alert-success text-center">
+      ✅ No pending questions
+    </div>
+
+    <div *ngFor="let q of pendingQ" class="card shadow-sm mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ q.questionTitle }}</h5>
+        <p class="card-text">{{ q.questionText }}</p>
+        <small class="text-muted">by <b>{{ q.author }}</b></small>
+
+        <div class="mt-3 d-flex gap-2">
+          <button class="btn btn-success btn-sm" (click)="approveQ(q.questionId)">✔ Approve</button>
+          <button class="btn btn-danger btn-sm" (click)="rejectQ(q.questionId)">❌ Reject</button>
+          <!--  New Delete -->
+          <button class="btn btn-outline-dark btn-sm" (click)="deleteQ(q.questionId)">🗑 Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- ===== Pending Answers ===== -->
+    <h3 class="section-title">💬 Pending Answers</h3>
+    <div *ngIf="pendingA.length === 0" class="alert alert-info text-center">
+      ✅ No pending answers
+    </div>
+
+    <div *ngFor="let a of pendingA" class="card shadow-sm mb-3">
+      <div class="card-body">
+        <p><b>Answer:</b> {{ a.answerText }}</p>
+        <small class="text-muted">Q#{{ a.questionId }} — by <b>{{ a.author }}</b></small>
+
+        <div class="mt-3 d-flex gap-2">
+          <button class="btn btn-success btn-sm" (click)="approveA(a.answerId)">✔ Approve</button>
+          <button class="btn btn-danger btn-sm" (click)="rejectA(a.answerId)">❌ Reject</button>
+          <!-- New Delete -->
+          <button class="btn btn-outline-dark btn-sm" (click)="deleteA(a.answerId)">🗑 Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

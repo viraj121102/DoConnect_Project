@@ -1,0 +1,77 @@
+<div class="app-container">
+  <!-- Header -->
+  <header
+    class="app-header"
+    [ngClass]="{
+      'admin-header': role?.toLowerCase() === 'admin',
+      'user-header': role?.toLowerCase() === 'user'
+    }"
+  >
+    <h1 class="brand">
+      <i class="fas fa-network-wired"></i> DoConnect
+    </h1>
+
+    <!-- Hamburger menu -->
+    <div class="menu-btn" (click)="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Admin Navbar -->
+    <nav
+      *ngIf="role?.toLowerCase() === 'admin'"
+      [ngClass]="{ active: menuOpen }"
+    >
+      <a routerLink="/admin"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+      <!-- <a routerLink="/questions"><i class="fas fa-question-circle"></i> Questions</a> -->
+      <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+
+    <!-- User Navbar -->
+    <nav
+      *ngIf="role?.toLowerCase() === 'user'"
+      [ngClass]="{ active: menuOpen }"
+    >
+      <a routerLink="/questions"><i class="fas fa-question"></i> Questions</a>
+      <a routerLink="/questions/ask"><i class="fas fa-plus-circle"></i> Ask</a>
+      <!-- 🔍 Search Box -->
+<form (submit)="onSearch($event)" class="search-form">
+  <input type="text" [(ngModel)]="searchText" name="search" placeholder="Search questions..." />
+  <button type="submit">Search</button>
+</form>
+
+<!-- 🔍 Search Results -->
+<div *ngIf="searchResults.length > 0" class="search-results">
+  <h3>Search Results</h3>
+  <ul>
+    <li *ngFor="let q of searchResults">
+      <strong>{{ q.questionTitle }}</strong> - {{ q.questionText }}
+    </li>
+  </ul>
+</div>
+
+      <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+  </header>
+
+  <!-- Main content -->
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+
+ <!-- Footer -->
+<footer
+  class="app-footer"
+  [ngClass]="{
+    'admin-footer': role?.toLowerCase() === 'admin',
+    'user-footer': role?.toLowerCase() === 'user'
+  }"
+>
+  <p *ngIf="role?.toLowerCase() === 'admin'">
+    <i class="fas fa-user-shield"></i> Admin Panel | © 2025 DoConnect
+  </p>
+
+  <p *ngIf="role?.toLowerCase() === 'user'">
+    <i class="fas fa-users"></i> User Zone | © 2025 DoConnect
+  </p>
+</footer>
+

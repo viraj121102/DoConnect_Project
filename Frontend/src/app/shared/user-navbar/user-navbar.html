@@ -1,0 +1,24 @@
+<nav class="user-navbar">
+  <div class="logo">
+    <i class="fas fa-user-graduate"></i>
+    <span>DoConnect</span>
+  </div>
+
+  <!-- Hamburger button -->
+  <div class="menu-btn" (click)="menuOpen = !menuOpen">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Links -->
+  <ul [ngClass]="{'active': menuOpen}" class="nav-links">
+    <li>
+      <a routerLink="/dashboard"><i class="fas fa-home"></i> Dashboard</a>
+    </li>
+    <li>
+      <a routerLink="/questions"><i class="fas fa-question-circle"></i> Questions</a>
+    </li>
+    <li>
+      <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </li>
+  </ul>
+</nav>

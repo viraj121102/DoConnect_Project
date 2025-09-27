@@ -1,0 +1,26 @@
+.lightbox {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.lightbox-content {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.close, .prev, .next {
+  position: absolute;
+  color: #fff;
+  font-size: 2em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.close { top: 20px; right: 35px; }
+.prev { left: 20px; top: 50%; transform: translateY(-50%); }
+.next { right: 20px; top: 50%; transform: translateY(-50%); }

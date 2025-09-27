@@ -1,0 +1,28 @@
+<div class="questions-container">
+  <h2 class="page-title"><i class="fas fa-question-circle"></i> Questions</h2>
+
+  <div class="questions-grid">
+    <div class="question-card card shadow-sm" *ngFor="let q of items">
+      <div class="card-body">
+        <!-- Title -->
+        <h5 class="card-title">
+          <a (click)="open(q.questionId)">{{ q.questionTitle }}</a>
+        </h5>
+
+        <!-- Author -->
+        <p class="card-author">
+          <i class="fas fa-user"></i> {{ q.author }}
+        </p>
+
+        <!-- Images -->
+        <div class="card-images" *ngIf="q.images?.length">
+          <img
+            *ngFor="let img of q.images"
+            [src]="fileBase + img.path"
+            alt="question image"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

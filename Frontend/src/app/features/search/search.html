@@ -1,0 +1,15 @@
+<div class="search-container">
+  <h2>Search Results for "{{ query }}"</h2>
+
+  <div *ngIf="results.length === 0">
+    ❌ No results found.
+  </div>
+
+  <ul *ngIf="results.length > 0">
+    <li *ngFor="let q of results">
+      <a [routerLink]="['/question', q.questionId]">{{ q.questionTitle }}</a>
+      <p>{{ q.questionText }}</p>
+      <small>by {{ q.author }}</small>
+    </li>
+  </ul>
+</div>

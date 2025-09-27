@@ -1,0 +1,127 @@
+/* Container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(120deg, #f5f7fa, #e0f2f1);
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  color: white;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.app-header .brand {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Role-based colors */
+.admin-header {
+  background: linear-gradient(90deg, #8e24aa, #6a1b9a); /* Purple for admin */
+}
+
+.user-header {
+  background: linear-gradient(90deg, #1976d2, #0d47a1); /* Blue for user */
+}
+
+/* Navbar */
+.app-header nav {
+  display: flex;
+  gap: 20px;
+}
+
+.app-header nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s ease;
+}
+
+.app-header nav a:hover {
+  transform: scale(1.1);
+  text-decoration: underline;
+}
+
+/* Mobile menu button */
+.menu-btn {
+  display: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Responsive navbar */
+@media (max-width: 768px) {
+  .app-header nav {
+    display: none;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .app-header nav.active {
+    display: flex;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+}
+
+/* Main content */
+.app-main {
+  flex: 1;
+  padding: 24px;
+}
+
+/* Common footer base */
+.app-footer {
+  text-align: center;
+  padding: 14px;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.app-footer p {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+/* Admin footer */
+.admin-footer {
+  background: linear-gradient(90deg, #6a1b9a, #8e24aa); /* Purple shades */
+}
+
+.admin-footer i {
+  color: #ffb300; /* Golden accent */
+}
+
+/* User footer */
+.user-footer {
+  background: linear-gradient(90deg, #0d47a1, #1976d2); /* Blue shades */
+}
+
+.user-footer i {
+  color: #ffeb3b; /* Yellow accent */
+}

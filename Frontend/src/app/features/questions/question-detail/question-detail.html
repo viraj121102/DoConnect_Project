@@ -1,0 +1,42 @@
+<div *ngIf="detail" (document:keydown)="handleKey($event)">
+  <h2>{{ detail.questionTitle }}</h2>
+  <p>{{ detail.questionText }}</p>
+  
+
+  <!-- Question Images -->
+  <div *ngIf="detail.questionImages?.length">
+    <h4>Images</h4>
+    <img *ngFor="let img of detail.questionImages; let i = index"
+         [src]="fileBase + img.path"
+         (click)="openGallery(getQuestionImageUrls(), i)"
+         style="max-height:120px; margin:4px; cursor:pointer" />
+  </div>
+
+  <!-- Answers List -->
+  <h3>Answers</h3>
+  <div *ngFor="let a of detail.answers">
+    <div>{{ a.answerText }} — <i>{{ a.author }}</i></div>
+
+    <!-- Answer Images -->
+    <div *ngIf="a.answerImages?.length">
+      <img *ngFor="let i of a.answerImages; let idx = index"
+           [src]="fileBase + i.path"
+           (click)="openGallery(getAnswerImageUrls(a), idx)"
+           style="max-height:100px; margin:4px; cursor:pointer" />
+    </div>
+  </div>
+
+  <!-- Post Answer -->
+  <div *ngIf="auth.isLoggedIn() && (auth.getRole()?.toLowerCase() === 'user' || auth.getRole()?.toLowerCase() === 'admin')">
+    <textarea [(ngModel)]="answerText" rows="4" cols="60"></textarea><br />
+    <button (click)="postAnswer()">Submit Answer</button>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div *ngIf="lightboxOpen" class="lightbox">
+  <span class="close" (click)="closeGallery()">&times;</span>
+  <span class="prev" (click)="prevImage()">&#10094;</span>
+  <img [src]="lightboxImages[currentIndex]" class="lightbox-content" />
+  <span class="next" (click)="nextImage()">&#10095;</span>
+</div>
